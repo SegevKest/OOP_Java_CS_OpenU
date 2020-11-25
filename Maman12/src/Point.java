@@ -99,6 +99,8 @@ public class Point {
 		xCoordinate = Math.cos(convertedAlpha) * _radius;
 		
 		return xCoordinate;
+		//return roundCoordinate(xCoordinate);
+
 	}
 	
 	/**
@@ -113,6 +115,7 @@ public class Point {
 		yCoordinate = Math.sin(convertedAlpha) * _radius;
 		
 		return yCoordinate;
+		//return roundCoordinate(yCoordinate);
 	}
 	
 	/**
