@@ -60,13 +60,13 @@ public class Point {
 	 */
 	private void setRadiusAndAlpha(double x, double y) {
 		
-		double radiusCalculateInnerPhrase = 0, coordinatesRatio = 0;
+		double radiusCalculateInnerPhrase = 0, alphaInRadians = 0;
 		boolean isXEqualsZero =  x == Q1_DEFAULT_VAL;
 
 		//alpha calculation
 		if (! isXEqualsZero) {		
-			coordinatesRatio = Math.atan( y / x );
-			_alpha = CONVERT_RADIANS_TO_DEGREES * coordinatesRatio;
+			alphaInRadians = Math.atan( y / x );
+			_alpha = CONVERT_RADIANS_TO_DEGREES * alphaInRadians;
 		}
 		else
 			_alpha = RIGHT_ANGLE_DEGREES;
@@ -86,6 +86,16 @@ public class Point {
 		return ( Math.round(coordinate * FIXED_ROUND_PARAM ) / (double)FIXED_ROUND_PARAM );
 	}
 	
+	/**
+	 * Convert alpha to radians
+	 * @param alpha angle in degrees for convert
+	 * @return alpha in radians
+	 */
+	private double convertToRadians(double alpha) {
+		
+		return CONVERT_DEGREES_TO_RADIANS * alpha;
+	}
+	
 	
 	/**
 	 * Returns the X coordinate of the Point
@@ -95,7 +105,7 @@ public class Point {
 		
 		double xCoordinate = 0, convertedAlpha = 0;
 		
-		convertedAlpha = CONVERT_DEGREES_TO_RADIANS * _alpha;
+		convertedAlpha = convertToRadians(_alpha);
 		xCoordinate = Math.cos(convertedAlpha) * _radius;
 		
 		return xCoordinate;
@@ -111,7 +121,7 @@ public class Point {
 		
 		double yCoordinate = 0, convertedAlpha = 0;
 		
-		convertedAlpha = CONVERT_DEGREES_TO_RADIANS * _alpha;
+		convertedAlpha = convertToRadians(_alpha);
 		yCoordinate = Math.sin(convertedAlpha) * _radius;
 		
 		return yCoordinate;
@@ -130,7 +140,6 @@ public class Point {
 		if (! isNumNegative ) {
 			setRadiusAndAlpha(num, getY());
 		}
-		
 	}
 	
 	/**
